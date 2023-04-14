@@ -42,6 +42,7 @@ public class BattlefieldController {
     @GetMapping("/battlefield{bid}/fight/{id}")
     public String fight(Model model, @PathVariable Long id, @PathVariable String bid) {
         Monster monster = monsterService.getMonsterById(id);
+        model.addAttribute("monster",monster);
         return "fight";
     }
 }
