@@ -7,6 +7,7 @@ import com.example.swordo.service.BattlefieldService;
 import com.example.swordo.service.FighterService;
 import com.example.swordo.service.ShopService;
 import com.example.swordo.views.BattlefieldViewModel;
+import com.example.swordo.views.BattlefieldsViewModel;
 import com.example.swordo.views.FighterViewModel;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -57,7 +58,7 @@ public class AdminController {
     public String console(Model model){
         List<FighterViewModel>  fighters = fighterService.getAllFighters();
         model.addAttribute("fighters",fighters);
-        List<BattlefieldViewModel> battlefields = battlefieldService.getAllBattlefields();
+        List<BattlefieldsViewModel> battlefields = battlefieldService.getAllBattlefields();
         model.addAttribute("battlefields",battlefields);
 
         return "admin-console";

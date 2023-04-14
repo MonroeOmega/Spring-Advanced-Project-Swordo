@@ -1,12 +1,14 @@
 package com.example.swordo.service;
 
-import com.example.swordo.views.BattlefieldViewModel;
+import com.example.swordo.models.entities.Battlefield;
+import com.example.swordo.views.BattlefieldsViewModel;
 
 import java.util.List;
 
 public interface BattlefieldService {
-    List<BattlefieldViewModel> getAllBattlefields();
+    List<BattlefieldsViewModel> getAllBattlefields();
 
     void initBattlefield();
 
+    Battlefield getBattlefieldById(Long bid);
 }

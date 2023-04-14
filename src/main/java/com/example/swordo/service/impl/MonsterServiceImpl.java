@@ -75,4 +75,9 @@ public class MonsterServiceImpl implements MonsterService {
         monsters.remove(4);
         return monsters;
     }
+
+    @Override
+    public Monster getMonsterById(Long id) {
+        return monsterRepository.findById(id).orElse(null);
+    }
 }

@@ -4,10 +4,9 @@ import com.example.swordo.models.entities.Battlefield;
 import com.example.swordo.models.entities.BattlefieldSize;
 import com.example.swordo.models.entities.Monster;
 import com.example.swordo.repository.BattlefieldRepository;
-import com.example.swordo.repository.MonsterRepository;
 import com.example.swordo.service.BattlefieldService;
 import com.example.swordo.service.MonsterService;
-import com.example.swordo.views.BattlefieldViewModel;
+import com.example.swordo.views.BattlefieldsViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +28,9 @@ public class BattlefieldServiceImpl implements BattlefieldService {
     }
 
     @Override
-    public List<BattlefieldViewModel> getAllBattlefields() {
+    public List<BattlefieldsViewModel> getAllBattlefields() {
         return battlefieldRepository.findAll()
-                .stream().map(battlefield -> modelMapper.map(battlefield, BattlefieldViewModel.class))
+                .stream().map(battlefield -> modelMapper.map(battlefield, BattlefieldsViewModel.class))
                 .collect(Collectors.toList());
     }
 
@@ -64,6 +63,11 @@ public class BattlefieldServiceImpl implements BattlefieldService {
                         }
                     }
                 });
+    }
+
+    @Override
+    public Battlefield getBattlefieldById(Long bid) {
+        return battlefieldRepository.findById(bid).orElse(null);
     }
 
     private List<Monster> getBasicMonsterSets(int num){

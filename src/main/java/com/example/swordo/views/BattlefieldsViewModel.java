@@ -1,25 +1,22 @@
 package com.example.swordo.views;
 
 import com.example.swordo.models.entities.BattlefieldSize;
-import com.example.swordo.models.entities.Monster;
 
-import java.util.List;
-
-public class BattlefieldViewModel {
+public class BattlefieldsViewModel {
     private Long id;
-    private List<Monster> monsters;
     private BattlefieldSize size;
     private String description;
+    private Integer count;
 
-    public BattlefieldViewModel() {
+    public BattlefieldsViewModel() {
     }
 
-    public List<Monster> getMonsters() {
-        return monsters;
+    public Long getId() {
+        return id;
     }
 
-    public void setMonsters(List<Monster> monsters) {
-        this.monsters = monsters;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public BattlefieldSize getSize() {
@@ -38,11 +35,11 @@ public class BattlefieldViewModel {
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

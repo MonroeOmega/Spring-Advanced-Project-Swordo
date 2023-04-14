@@ -2,7 +2,6 @@ package com.example.swordo.service;
 
 import com.example.swordo.models.entities.Monster;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface MonsterService {
@@ -11,4 +10,6 @@ public interface MonsterService {
     Monster getJimmyOmega();
 
     List<Monster> getAllExceptJimmy();
+
+    Monster getMonsterById(Long id);
 }
