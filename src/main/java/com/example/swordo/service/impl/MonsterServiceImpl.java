@@ -8,6 +8,7 @@ import com.example.swordo.service.MonsterService;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class MonsterServiceImpl implements MonsterService {
@@ -61,5 +62,17 @@ public class MonsterServiceImpl implements MonsterService {
                     }
                     monsterRepository.save(monster);
                 });
+    }
+
+    @Override
+    public Monster getJimmyOmega() {
+        return monsterRepository.findById(5L).orElse(null);
+    }
+
+    @Override
+    public List<Monster> getAllExceptJimmy() {
+        List<Monster> monsters = monsterRepository.findAll();
+        monsters.remove(4);
+        return monsters;
     }
 }
