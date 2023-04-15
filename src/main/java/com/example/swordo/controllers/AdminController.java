@@ -9,6 +9,7 @@ import com.example.swordo.service.ShopService;
 import com.example.swordo.views.BattlefieldViewModel;
 import com.example.swordo.views.BattlefieldsViewModel;
 import com.example.swordo.views.FighterViewModel;
+import com.example.swordo.views.ShopViewModel;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -35,12 +36,12 @@ public class AdminController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/admin-register")
+    @GetMapping("/admin/register")
     public String register(){
         return "admin-register";
     }
 
-    @PostMapping("/admin-register")
+    @PostMapping("/admin/register")
     public String confirmFighterRegister(@Valid AdminRegisterBindingModel adminRegisterBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()||!adminRegisterBindingModel.getRepeatPassword().equals(adminRegisterBindingModel.getPassword())){
             redirectAttributes.addFlashAttribute("adminRegisterBindingModel",adminRegisterBindingModel);
@@ -54,13 +55,14 @@ public class AdminController {
         return "redirect:/users/login";
     }
 
-    @GetMapping("/admin-console")
+    @GetMapping("/admin/console")
     public String console(Model model){
         List<FighterViewModel>  fighters = fighterService.getAllFighters();
         model.addAttribute("fighters",fighters);
         List<BattlefieldsViewModel> battlefields = battlefieldService.getAllBattlefields();
         model.addAttribute("battlefields",battlefields);
-
+        List<ShopViewModel> shop = shopService.getAllShops();
+        model.addAttribute("shop",shop);
         return "admin-console";
     }
 

@@ -1,10 +1,10 @@
 package com.example.swordo.controllers;
 
+import com.example.swordo.current.CurrentFighter;
 import com.example.swordo.models.entities.Battlefield;
 import com.example.swordo.models.entities.Monster;
 import com.example.swordo.service.BattlefieldService;
 import com.example.swordo.service.MonsterService;
-import com.example.swordo.views.BattlefieldViewModel;
 import com.example.swordo.views.BattlefieldsViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +19,12 @@ import java.util.List;
 public class BattlefieldController {
     private final BattlefieldService battlefieldService;
     private final MonsterService monsterService;
+    private final CurrentFighter currentFighter;
 
-    public BattlefieldController(BattlefieldService battlefieldService, MonsterService monsterService) {
+    public BattlefieldController(BattlefieldService battlefieldService, MonsterService monsterService, CurrentFighter currentFighter) {
         this.battlefieldService = battlefieldService;
         this.monsterService = monsterService;
+        this.currentFighter = currentFighter;
     }
 
     @GetMapping("")
@@ -43,6 +45,7 @@ public class BattlefieldController {
     public String fight(Model model, @PathVariable Long id, @PathVariable String bid) {
         Monster monster = monsterService.getMonsterById(id);
         model.addAttribute("monster",monster);
+        model.addAttribute("currentFighter",currentFighter);
         return "fight";
     }
 }

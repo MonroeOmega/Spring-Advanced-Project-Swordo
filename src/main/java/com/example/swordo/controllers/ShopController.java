@@ -19,8 +19,8 @@ public class ShopController {
 
     @GetMapping("/shop")
     public String shop(Model model){
-        List<ShopViewModel> shops = shopService.getAllShops();
-        model.addAttribute("shops",shops);
+        List<ShopViewModel> shop = shopService.getAllShops();
+        model.addAttribute("shop",shop);
         return "shop";
     }
 }
