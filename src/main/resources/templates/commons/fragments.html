@@ -7,7 +7,42 @@
     <title>Swordo</title>
 </head>
 <body>
-    <header th: th:fragment="navigaton"></header>
-    <footer th:fragment="footer"></footer>
+<header th: th:fragment="navigaton">
+    <nav>
+        <div>
+            <ul>
+                <th:block th:if="${@currentFighter.id == null}">
+                    <li>
+                        <a href="/fighters/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/fighters/register">Register</a>
+                    </li>
+                </th:block>
+                <th:block th:if="${@currentFighter.role == com.example.swordo.models.entities.FighterRoleEnum.ADMIN}">
+                    <a href="/admin/console">Admin Console</a>
+                </th:block>
+                <th:block th:unless="${@currentFighter.id == null}">
+                    <li>
+                        <a href="/battlefields">Battlefields</a>
+                    </li>
+                    <li>
+                        <a href="/shop">Shop</a>
+                    </li>
+                    <li>
+                        <a href="/fighters/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/home">Home</a>
+                    </li>
+                    <li>
+                        <a href="/fighters/logout">Logout</a>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer th:fragment="footer">Made by Martin Zhekov. All rights reserved (maybe)</footer>
 </body>
 </html>
