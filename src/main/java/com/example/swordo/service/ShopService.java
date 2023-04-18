@@ -9,4 +9,6 @@ public interface ShopService {
     List<ShopViewModel> getAllShops();
 
     void initShop();
+
+    void sellSword(Long id);
 }

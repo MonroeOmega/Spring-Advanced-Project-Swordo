@@ -6,6 +6,7 @@ import com.example.swordo.models.entities.FighterRoleEnum;
 import com.example.swordo.models.service.FighterServiceModel;
 import com.example.swordo.repository.FighterRepository;
 import com.example.swordo.service.FighterService;
+import com.example.swordo.service.SwordService;
 import com.example.swordo.views.FighterViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,13 @@ public class FighterServiceImpl implements FighterService {
     private final FighterRepository fighterRepository;
     private final ModelMapper modelMapper;
     private final CurrentFighter currentFighter;
+    private final SwordService swordService;
 
-    public FighterServiceImpl(FighterRepository fighterRepository, ModelMapper modelMapper, CurrentFighter currentFighter) {
+    public FighterServiceImpl(FighterRepository fighterRepository, ModelMapper modelMapper, CurrentFighter currentFighter, SwordService swordService) {
         this.fighterRepository = fighterRepository;
         this.modelMapper = modelMapper;
         this.currentFighter = currentFighter;
+        this.swordService = swordService;
     }
 
 
@@ -33,6 +36,7 @@ public class FighterServiceImpl implements FighterService {
         fighter.setRole(FighterRoleEnum.USER);
         fighter.setHitpoints(1000);
         fighter.setCoins(0);
+        fighter.setSword(swordService.getRegular());
         fighterRepository.save(fighter);
     }
 

@@ -10,7 +10,7 @@ public class Sword extends BaseEntity{
     private SwordClass swordClass;
     private Integer damage;
     private Integer durability;
-    private List<Shop> shop;
+    private Integer price;
 
     public Sword() {
     }
@@ -39,12 +39,11 @@ public class Sword extends BaseEntity{
         this.durability = durability;
     }
 
-    @OneToMany(mappedBy = "sword")
-    public List<Shop> getShop() {
-        return shop;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setShop(List<Shop> shop) {
-        this.shop = shop;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

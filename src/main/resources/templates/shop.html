@@ -7,7 +7,17 @@
 <main>
     <div>
         <div>
-            
+            <h1><strong>Shop</strong></h1>
+            <h3><strong>Here you can buy swords</strong></h3>
+        </div>
+        <div>
+            <div th:each="s : ${shop}">
+                <span th:text="|Type: ${s.sword.getSwordClass()}|"></span>
+                <span th:text="|Damage: ${s.sword.getDamage()}|"></span>
+                <span th:text="|Durability: ${s.sword.getDurability()}|"></span>
+                <span th:text="|Price: ${s.sword.getPrice()}|"></span>
+                <a th:href="@{/shop/buy/{id}(id = *{s.id})}">Purchase</a>
+            </div>
         </div>
     </div>
 </main>
