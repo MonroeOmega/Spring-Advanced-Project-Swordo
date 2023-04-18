@@ -35,6 +35,9 @@ public class FighterController {
 
     @GetMapping("/register")
     public String register(){
+        if (currentFighter.getId() != null) {
+            return "redirect:/";
+        }
         return "register";
     }
 
@@ -54,6 +57,9 @@ public class FighterController {
 
     @GetMapping("/login")
     private String login(Model model){
+        if (currentFighter.getId() != null) {
+            return "redirect:/";
+        }
         if(!model.containsAttribute("isFound")){
             model.addAttribute("isFound",true);
         }
@@ -84,8 +90,7 @@ public class FighterController {
 
     @GetMapping("/logout")
     private String logout(HttpSession httpSession){
-        FighterServiceModel fighterServiceModel = modelMapper.map(currentFighter, FighterServiceModel.class);
-        fighterService.confirmLogout(fighterServiceModel);
+        fighterService.updateCurrentFighter();
         httpSession.invalidate();
         return "redirect:/";
     }
@@ -129,6 +134,7 @@ public class FighterController {
         }
 
         fighterService.editFighter(modelMapper.map(fighterEditBindingModel, FighterServiceModel.class));
+        fighterService.updateCurrentFighter();
 
         return "redirect:/fighters/profile";
     }

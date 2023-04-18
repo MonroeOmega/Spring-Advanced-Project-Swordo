@@ -18,5 +18,5 @@ public interface FighterService {
 
     void editFighter(FighterServiceModel fighterServiceModel);
 
-    void confirmLogout(FighterServiceModel currentFighter);
+    void updateCurrentFighter();
 }

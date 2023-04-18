@@ -80,9 +80,9 @@ public class FighterServiceImpl implements FighterService {
         currentFighter.setUsername(fighterServiceModel.getUsername());
     }
 
+
     @Override
-    public void confirmLogout(FighterServiceModel currentFighter) {
-        fighterRepository.deleteById(currentFighter.getId());
-        fighterRepository.save(modelMapper.map(currentFighter,Fighter.class));
+    public void updateCurrentFighter() {
+        fighterRepository.save(modelMapper.map(currentFighter, Fighter.class));
     }
 }

@@ -40,6 +40,9 @@ public class AdminController {
 
     @GetMapping("/admin/register")
     public String register(){
+        if (currentFighter.getId() != null) {
+            return "redirect:/";
+        }
         return "admin-register";
     }
 
