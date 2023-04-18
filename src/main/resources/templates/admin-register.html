@@ -4,6 +4,97 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main role="main">
+    <div>
+        <div>
+            <h1><strong>Register</strong></h1>
+        </div>
+        <div>
+            <form th:action="@{/admin/register}" th:method="POST" th:object="${adminRegisterBindingModel}">
+                <div>
+                    <label for="username">Username</label>
+                    <div>
+                        <input th:field="*{username}" type="text" id="username"
+                               aria-describedby="usernameHelpInline" placeholder="Username">
+                        <small id="usernameHelpInline" th:if="${#fields.hasErrors()}">
+                            Username length must be between 5 and 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="firstName">First name</label>
+                    <div>
+                        <input th:field="*{firstName}" type="text" id="firstName"
+                               aria-describedby="firstNameHelpInline" placeholder="First name">
+                    </div>
+                </div>
+                <div>
+                    <label for="lastName">Last name</label>
+                    <div>
+                        <input th:field="*{lastName}" type="text" id="lastName"
+                               aria-describedby="lastNameHelpInline" placeholder="Last name">
+                        <small id="lastNameHelpInline" th:if="${#fields.hasErrors()}">
+                            Last name length must be between 5 and 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <div>
+                        <input th:field="*{email}" type="text" id="email"
+                               aria-describedby="emailHelpInline" placeholder="email@example.com">
+                        <small id="emailHelpInline" th:if="${#fields.hasErrors()}">
+                            Enter valid email address.
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <div>
+                        <input th:field="*{password}" type="password" id="password"
+                               aria-describedby="passwordHelpInline" placeholder="Password">
+                        <small id="passwordHelpInline" th:if="${#fields.hasErrors()}">
+                            Password length must be more than 3 characters long.
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div>
+                        <input th:field="*{repeatPassword}" type="password" id="confirmPassword"
+                               aria-describedby="confirmPasswordHelpInline" placeholder="Confirm Password">
+                        <small id="confirmPasswordHelpInline" th:if="${#fields.hasErrors()}">
+                            Password length must be more than 3 characters long.
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="alpha">Alpha Field</label>
+                    <div>
+                        <input th:field="*{alphaField}" type="text" id="alpha"
+                               aria-describedby="alphaHelpInline" placeholder="Alpha Field">
+                        <small id="alphaHelpInline" th:if="${#fields.hasErrors()}">
+                            Wrong alpha field;
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="backstory">Backstory</label>
+                    <div>
+                    <textarea th:field="*{backstory}" id="backstory"
+                              aria-describedby="backstoryHelpInline" placeholder="Backstory...">
+                    </textarea>
+                        <small id="backstoryHelpInline" th:if="${#fields.hasErrors()}">
+                            The description must be more than 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <hr class="bg-light">
+        </div>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>

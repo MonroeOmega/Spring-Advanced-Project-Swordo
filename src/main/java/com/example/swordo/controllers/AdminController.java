@@ -49,12 +49,12 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("adminRegisterBindingModel",adminRegisterBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.adminRegisterBindingModel",bindingResult);
 
-            return "redirect:admin-register";
+            return "redirect:/admin/register";
         }
 
         fighterService.registerAdmin(modelMapper.map(adminRegisterBindingModel, FighterServiceModel.class));
 
-        return "redirect:/users/login";
+        return "redirect:/fighters/login";
     }
 
     @GetMapping("/admin/console")

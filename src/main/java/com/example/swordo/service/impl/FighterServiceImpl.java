@@ -62,6 +62,7 @@ public class FighterServiceImpl implements FighterService {
         Fighter fighter = modelMapper.map(fighterServiceModel, Fighter.class);
         fighter.setRole(FighterRoleEnum.ADMIN);
         fighter.setHitpoints(Integer.MAX_VALUE);
+        fighter.setCoins(9999999);
         fighterRepository.save(fighter);
     }
 

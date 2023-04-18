@@ -2,6 +2,7 @@ package com.example.swordo.models.binding;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
+import org.springframework.beans.factory.annotation.Value;
 
 public class AdminRegisterBindingModel {
     private String username;
@@ -77,6 +78,7 @@ public class AdminRegisterBindingModel {
         this.repeatPassword = repeatPassword;
     }
 
+    @Value("TestFieldAlpha")
     public String getAlphaField() {
         return alphaField;
     }

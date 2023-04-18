@@ -6,6 +6,7 @@ import com.example.swordo.models.binding.FighterLoginBindingModel;
 import com.example.swordo.models.binding.FighterRegisterBindingModel;
 import com.example.swordo.models.service.FighterServiceModel;
 import com.example.swordo.service.FighterService;
+import com.example.swordo.views.FighterProfileViewModel;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -93,7 +94,8 @@ public class FighterController {
         if (currentFighter.getId() == null) {
             return "index";
         }
-        model.addAttribute("currentFighter",currentFighter);
+        FighterProfileViewModel profileViewModel = modelMapper.map(currentFighter, FighterProfileViewModel.class);
+        model.addAttribute("profileViewModel",profileViewModel);
         return "profile";
     }
 
