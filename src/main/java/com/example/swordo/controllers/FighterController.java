@@ -125,12 +125,12 @@ public class FighterController {
             redirectAttributes.addFlashAttribute("fighterEditBindingModel",fighterEditBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fighterEditBindingModel",bindingResult);
 
-            return "redirect:/profile/edit";
+            return "redirect:/fighters/profile/edit";
         }
 
         fighterService.editFighter(modelMapper.map(fighterEditBindingModel, FighterServiceModel.class));
 
-        return "redirect:profile";
+        return "redirect:/fighters/profile";
     }
 
     @ModelAttribute
