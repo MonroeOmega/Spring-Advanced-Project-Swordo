@@ -7,7 +7,7 @@
     <title>Swordo</title>
 </head>
 <body>
-<header th: th:fragment="navigaton">
+<header th:fragment="navigation">
     <nav>
         <div>
             <ul>
@@ -19,7 +19,7 @@
                         <a href="/fighters/register">Register</a>
                     </li>
                 </th:block>
-                <th:block th:if="${@currentFighter.role == com.example.swordo.models.entities.FighterRoleEnum.ADMIN}">
+                <th:block th:if="${@currentFighter.role == T(com.example.swordo.models.entities.FighterRoleEnum).ADMIN}">
                     <a href="/admin/console">Admin Console</a>
                 </th:block>
                 <th:block th:unless="${@currentFighter.id == null}">
