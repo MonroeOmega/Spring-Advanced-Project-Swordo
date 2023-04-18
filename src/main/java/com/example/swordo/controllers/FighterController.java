@@ -6,6 +6,7 @@ import com.example.swordo.models.binding.FighterLoginBindingModel;
 import com.example.swordo.models.binding.FighterRegisterBindingModel;
 import com.example.swordo.models.service.FighterServiceModel;
 import com.example.swordo.service.FighterService;
+import com.example.swordo.views.FighterEditViewModel;
 import com.example.swordo.views.FighterProfileViewModel;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -96,7 +97,23 @@ public class FighterController {
         }
         FighterProfileViewModel profileViewModel = modelMapper.map(currentFighter, FighterProfileViewModel.class);
         model.addAttribute("profileViewModel",profileViewModel);
+        if(profileViewModel.getSword() != null) {
+            model.addAttribute("sword", profileViewModel.getSword().getSwordClass());
+        }else{
+            model.addAttribute("sword",null);
+        }
         return "profile";
+    }
+
+    @GetMapping("/profile/edit")
+    private String edit(Model model){
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
+        FighterEditViewModel editViewModel = modelMapper.map(currentFighter, FighterEditViewModel.class);
+        model.addAttribute("editViewModel",editViewModel);
+
+        return "edit";
     }
 
     @PostMapping("/profile/edit")

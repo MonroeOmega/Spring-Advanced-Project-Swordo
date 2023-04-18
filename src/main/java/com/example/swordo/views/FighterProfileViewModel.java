@@ -1,6 +1,7 @@
 package com.example.swordo.views;
 
 import com.example.swordo.models.entities.FighterRoleEnum;
+import com.example.swordo.models.entities.Sword;
 
 public class FighterProfileViewModel {
     private String username;
@@ -11,6 +12,7 @@ public class FighterProfileViewModel {
     private Integer hitpoints;
     private String backstory;
     private Integer coins;
+    private Sword sword;
 
     public FighterProfileViewModel() {
     }
@@ -77,5 +79,13 @@ public class FighterProfileViewModel {
 
     public void setCoins(Integer coins) {
         this.coins = coins;
+    }
+
+    public Sword getSword() {
+        return sword;
+    }
+
+    public void setSword(Sword sword) {
+        this.sword = sword;
     }
 }

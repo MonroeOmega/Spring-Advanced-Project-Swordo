@@ -1,6 +1,7 @@
 package com.example.swordo.current;
 
 import com.example.swordo.models.entities.FighterRoleEnum;
+import com.example.swordo.models.entities.Sword;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -16,6 +17,7 @@ public class CurrentFighter {
     private Integer hitpoints;
     private String backstory;
     private Integer coins;
+    private Sword sword;
     private String password;
 
     public CurrentFighter() {
@@ -99,5 +101,13 @@ public class CurrentFighter {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Sword getSword() {
+        return sword;
+    }
+
+    public void setSword(Sword sword) {
+        this.sword = sword;
     }
 }

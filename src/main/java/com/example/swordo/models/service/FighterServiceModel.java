@@ -1,6 +1,7 @@
 package com.example.swordo.models.service;
 
 import com.example.swordo.models.entities.FighterRoleEnum;
+import com.example.swordo.models.entities.Sword;
 
 public class FighterServiceModel {
     private Long id;
@@ -13,6 +14,7 @@ public class FighterServiceModel {
     private Integer hitpoints;
     private String backstory;
     private Integer coins;
+    private Sword sword;
 
     public FighterServiceModel() {
     }
@@ -95,5 +97,13 @@ public class FighterServiceModel {
 
     public void setCoins(Integer coins) {
         this.coins = coins;
+    }
+
+    public Sword getSword() {
+        return sword;
+    }
+
+    public void setSword(Sword sword) {
+        this.sword = sword;
     }
 }

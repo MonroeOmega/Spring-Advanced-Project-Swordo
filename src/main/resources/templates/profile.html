@@ -4,6 +4,43 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main>
+    <div>
+        <div>
+            <h1><strong>Profile</strong></h1>
+            <h3><strong>Here you can view your account information</strong></h3>
+        </div>
+        <div>
+            <div>
+                <h4 th:text="|Username: ${profileViewModel.username}|"></h4>
+            </div>
+            <div>
+                <h4 th:text="|Actual Name: ${profileViewModel.firstName} ${profileViewModel.lastName}|"></h4>
+            </div>
+            <div>
+                <h4 th:text="|Role: ${profileViewModel.role}|"></h4>
+            </div>
+            <div>
+                <h4 th:text="|Email: ${profileViewModel.email}|"></h4>
+            </div>
+            <div>
+                <h4 th:text="|Backstory: ${profileViewModel.backstory}|"></h4>
+            </div>
+            <th:block th:if="${sword != null}">
+            <div>
+                <h4 th:text="|Sword: ${sword}|"></h4>
+            </div>
+            </th:block>
+            <div>
+                <h4 th:text="|Health: ${profileViewModel.hitpoints}|"></h4>
+            </div>
+            <div>
+                <h4 th:text="|Money: ${profileViewModel.coins}|"></h4>
+            </div>
+            <a href="/fighters/profile/edit">Edit</a>
+        </div>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>

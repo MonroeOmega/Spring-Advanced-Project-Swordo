@@ -1,17 +1,13 @@
-package com.example.swordo.models.binding;
+package com.example.swordo.views;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
-
-public class FighterEditBindingModel {
+public class FighterEditViewModel {
     private String username;
     private String email;
     private String backstory;
 
-    public FighterEditBindingModel() {
+    public FighterEditViewModel() {
     }
 
-    @Size(min = 5, max = 20)
     public String getUsername() {
         return username;
     }
@@ -20,7 +16,6 @@ public class FighterEditBindingModel {
         this.username = username;
     }
 
-    @Email
     public String getEmail() {
         return email;
     }
@@ -28,7 +23,7 @@ public class FighterEditBindingModel {
     public void setEmail(String email) {
         this.email = email;
     }
-    @Size(min = 10)
+
     public String getBackstory() {
         return backstory;
     }
