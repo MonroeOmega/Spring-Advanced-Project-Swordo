@@ -4,6 +4,43 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main>
+    <div>
+        <div>
+            <h1><strong>Login</strong></h1>
+            <h3><strong>Enter valid username and password</strong></h3>
+        </div>
+        <div>
+            <form th:action="@{/fighters/login}" th:method="POST" th:object="${fighterLoginBindingModel}">
+                <h3 th:if="${isFound == false}">
+                    <strong>Wrong username and password combination.</strong>
+                </h3>
+                <div>
+                    <label for="username">Username</label>
+                    <div>
+                        <input th:field="*{username}" type="text" id="username"
+                               aria-describedby="usernameHelpInline" placeholder="Username">
+                        <small id="usernameHelpInline" th:if="${#fields.hasErrors()}">
+                            Username length must be between 5 and 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <div>
+                        <input th:field="*{password}" type="password" id="password"
+                               aria-describedby="passwordHelpInline" placeholder="Password">
+                        <small id="passwordHelpInline" th:if="${#fields.hasErrors()}">
+                            Password length must be more than 3 characters and less than 20.
+                        </small>
+                    </div>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <hr class="bg-light">
+        </div>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>
