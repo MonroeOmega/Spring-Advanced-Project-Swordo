@@ -16,6 +16,7 @@ public class CurrentFighter {
     private Integer hitpoints;
     private String backstory;
     private Integer coins;
+    private String password;
 
     public CurrentFighter() {
     }
@@ -49,7 +50,7 @@ public class CurrentFighter {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = this.lastName;
+        this.lastName = lastName;
     }
 
     public FighterRoleEnum getRole() {
@@ -90,5 +91,13 @@ public class CurrentFighter {
 
     public void setCoins(Integer coins) {
         this.coins = coins;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

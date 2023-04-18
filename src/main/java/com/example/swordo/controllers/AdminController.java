@@ -1,12 +1,12 @@
 package com.example.swordo.controllers;
 
+import com.example.swordo.current.CurrentFighter;
 import com.example.swordo.models.binding.AdminRegisterBindingModel;
-import com.example.swordo.models.entities.Fighter;
+import com.example.swordo.models.entities.FighterRoleEnum;
 import com.example.swordo.models.service.FighterServiceModel;
 import com.example.swordo.service.BattlefieldService;
 import com.example.swordo.service.FighterService;
 import com.example.swordo.service.ShopService;
-import com.example.swordo.views.BattlefieldViewModel;
 import com.example.swordo.views.BattlefieldsViewModel;
 import com.example.swordo.views.FighterViewModel;
 import com.example.swordo.views.ShopViewModel;
@@ -28,12 +28,14 @@ public class AdminController {
     private final BattlefieldService battlefieldService;
     private final ShopService shopService;
     private final ModelMapper modelMapper;
+    private final CurrentFighter currentFighter;
 
-    public AdminController(FighterService fighterService, BattlefieldService battlefieldService, ShopService shopService, ModelMapper modelMapper) {
+    public AdminController(FighterService fighterService, BattlefieldService battlefieldService, ShopService shopService, ModelMapper modelMapper, CurrentFighter currentFighter) {
         this.fighterService = fighterService;
         this.battlefieldService = battlefieldService;
         this.shopService = shopService;
         this.modelMapper = modelMapper;
+        this.currentFighter = currentFighter;
     }
 
     @GetMapping("/admin/register")
@@ -57,6 +59,9 @@ public class AdminController {
 
     @GetMapping("/admin/console")
     public String console(Model model){
+        if (currentFighter.getId() == null||currentFighter.getRole() != FighterRoleEnum.ADMIN) {
+            return "index";
+        }
         List<FighterViewModel>  fighters = fighterService.getAllFighters();
         model.addAttribute("fighters",fighters);
         List<BattlefieldsViewModel> battlefields = battlefieldService.getAllBattlefields();

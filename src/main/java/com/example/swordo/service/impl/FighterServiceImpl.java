@@ -27,13 +27,13 @@ public class FighterServiceImpl implements FighterService {
 
 
     @Override
-    public FighterServiceModel registerFighter(FighterServiceModel fighterServiceModel)
+    public void registerFighter(FighterServiceModel fighterServiceModel)
     {
         Fighter fighter = modelMapper.map(fighterServiceModel, Fighter.class);
         fighter.setRole(FighterRoleEnum.USER);
-        fighter.setHitpoints(100);
+        fighter.setHitpoints(1000);
         fighter.setCoins(0);
-        return modelMapper.map(fighterRepository.save(fighter), FighterServiceModel.class);
+        fighterRepository.save(fighter);
     }
 
     @Override
@@ -54,14 +54,15 @@ public class FighterServiceImpl implements FighterService {
         currentFighter.setRole(fighterServiceModel.getRole());
         currentFighter.setLastName(fighterServiceModel.getLastName());
         currentFighter.setCoins(fighterServiceModel.getCoins());
+        currentFighter.setPassword(fighterServiceModel.getPassword());
     }
 
     @Override
-    public FighterServiceModel registerAdmin(FighterServiceModel fighterServiceModel) {
+    public void registerAdmin(FighterServiceModel fighterServiceModel) {
         Fighter fighter = modelMapper.map(fighterServiceModel, Fighter.class);
         fighter.setRole(FighterRoleEnum.ADMIN);
         fighter.setHitpoints(Integer.MAX_VALUE);
-        return modelMapper.map(fighterRepository.save(fighter), FighterServiceModel.class);
+        fighterRepository.save(fighter);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public void confirmLogout(CurrentFighter currentFighter) {
+    public void confirmLogout(FighterServiceModel currentFighter) {
         fighterRepository.deleteById(currentFighter.getId());
         fighterRepository.save(modelMapper.map(currentFighter,Fighter.class));
     }

@@ -82,19 +82,26 @@ public class FighterController {
 
     @GetMapping("/logout")
     private String logout(HttpSession httpSession){
-        fighterService.confirmLogout(currentFighter);
+        FighterServiceModel fighterServiceModel = modelMapper.map(currentFighter, FighterServiceModel.class);
+        fighterService.confirmLogout(fighterServiceModel);
         httpSession.invalidate();
         return "redirect:/";
     }
 
     @GetMapping("/profile")
     private String profile(Model model){
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
         model.addAttribute("currentFighter",currentFighter);
         return "profile";
     }
 
     @PostMapping("/profile/edit")
     private String edit(@Valid FighterEditBindingModel fighterEditBindingModel,BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("fighterEditBindingModel",fighterEditBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.fighterEditBindingModel",bindingResult);

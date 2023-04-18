@@ -14,7 +14,6 @@ public class Fighter extends BaseEntity{
     private Integer hitpoints;
     private String backstory;
     private Sword sword;
-    private Battlefield battlefield;
     private Integer coins;
 
     public Fighter() {
@@ -68,7 +67,7 @@ public class Fighter extends BaseEntity{
     public void setHitpoints(Integer hitpoints) {
         this.hitpoints = hitpoints;
     }
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "TEXT")
     public String getBackstory() {
         return backstory;
     }
@@ -83,14 +82,6 @@ public class Fighter extends BaseEntity{
 
     public void setSword(Sword sword) {
         this.sword = sword;
-    }
-    @OneToOne
-    public Battlefield getBattlefield() {
-        return battlefield;
-    }
-
-    public void setBattlefield(Battlefield battlefield) {
-        this.battlefield = battlefield;
     }
 
     @Enumerated(value = EnumType.STRING)

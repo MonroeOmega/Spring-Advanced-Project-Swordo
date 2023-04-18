@@ -65,7 +65,7 @@ public class FighterRegisterBindingModel {
         this.repeatPassword = repeatPassword;
     }
 
-    @Size(min = 10,max = 100)
+    @Size(min = 10)
     public String getBackstory() {
         return backstory;
     }

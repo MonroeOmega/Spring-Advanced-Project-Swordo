@@ -29,6 +29,9 @@ public class BattlefieldController {
 
     @GetMapping("")
     public String battlefield(Model model){
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
         List<BattlefieldsViewModel> battlefields = battlefieldService.getAllBattlefields();
         model.addAttribute("battlefields",battlefields);
         return "battlefields";
@@ -36,6 +39,9 @@ public class BattlefieldController {
 
     @GetMapping("/battlefield/{bid}")
     public String battlefield(Model model,@PathVariable Long bid){
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
         Battlefield battlefield = battlefieldService.getBattlefieldById(bid);
         model.addAttribute("battlefield",battlefield);
         return "battlefield";
@@ -43,6 +49,9 @@ public class BattlefieldController {
 
     @GetMapping("/battlefield/{bid}/fight/{id}")
     public String fight(Model model, @PathVariable Long id, @PathVariable String bid) {
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
         Monster monster = monsterService.getMonsterById(id);
         model.addAttribute("monster",monster);
         model.addAttribute("currentFighter",currentFighter);
