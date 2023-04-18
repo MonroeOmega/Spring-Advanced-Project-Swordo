@@ -89,4 +89,14 @@ public class FighterServiceImpl implements FighterService {
     public void updateCurrentFighter() {
         fighterRepository.save(modelMapper.map(currentFighter, Fighter.class));
     }
+
+    @Override
+    public void healCurrentFighter() {
+        if(currentFighter.getCoins() >= 50){
+            currentFighter.setHitpoints(currentFighter.getHitpoints() + 100);
+            if (currentFighter.getHitpoints() > 1000){
+                currentFighter.setHitpoints(1000);
+            }
+        }
+    }
 }

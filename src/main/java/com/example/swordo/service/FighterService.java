@@ -19,4 +19,6 @@ public interface FighterService {
     void editFighter(FighterServiceModel fighterServiceModel);
 
     void updateCurrentFighter();
+
+    void healCurrentFighter();
 }

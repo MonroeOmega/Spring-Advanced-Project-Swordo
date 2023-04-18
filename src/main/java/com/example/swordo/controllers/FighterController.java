@@ -85,7 +85,7 @@ public class FighterController {
 
         fighterService.loginFighter(fighterServiceModel);
 
-        return "redirect:/home";
+        return "redirect:/town";
     }
 
     @GetMapping("/logout")

@@ -4,6 +4,16 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main>
+    <div>
+        <h1><strong>Profile</strong></h1>
+        <h3><strong>Here you can heal (and maybe something else if I have the time)</strong></h3>
+    </div>
+    <div>
+        <span th:text="|Current health: ${hitpoints} (its out of 1000)|"></span>
+        <a href="/home/heal">Healing: Price 50 coins</a>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>
