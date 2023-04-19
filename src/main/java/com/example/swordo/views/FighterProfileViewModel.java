@@ -13,7 +13,7 @@ public class FighterProfileViewModel {
     private String backstory;
     private Integer coins;
     private Sword sword;
-    private Integer swordDurability;
+    private Integer strikesLeft;
 
     public FighterProfileViewModel() {
     }
@@ -90,11 +90,11 @@ public class FighterProfileViewModel {
         this.sword = sword;
     }
 
-    public Integer getSwordDurability() {
-        return swordDurability;
+    public Integer getStrikesLeft() {
+        return strikesLeft;
     }
 
-    public void setSwordDurability(Integer swordDurability) {
-        this.swordDurability = swordDurability;
+    public void setStrikesLeft(Integer strikesLeft) {
+        this.strikesLeft = strikesLeft;
     }
 }

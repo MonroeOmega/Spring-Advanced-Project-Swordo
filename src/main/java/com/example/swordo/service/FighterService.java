@@ -24,4 +24,6 @@ public interface FighterService {
     void healCurrentFighter();
 
     Fighter findCurrent();
+
+    void strike();
 }

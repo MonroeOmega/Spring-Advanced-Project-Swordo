@@ -55,7 +55,7 @@ public class ShopServiceImpl implements ShopService {
             if (currentFighter.getCoins() >= shop.getSword().getPrice()) {
                 currentFighter.setSword(shop.getSword());
                 currentFighter.setCoins(currentFighter.getCoins() - shop.getSword().getPrice());
-                currentFighter.setSwordDurability(shop.getSword().getDurability());
+                currentFighter.setStrikesLeft(shop.getSword().getDurability());
                 shopRepository.deleteById(id);
             }
         });

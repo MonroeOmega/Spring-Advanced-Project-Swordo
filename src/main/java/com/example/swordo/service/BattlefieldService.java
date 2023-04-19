@@ -14,4 +14,6 @@ public interface BattlefieldService {
     Battlefield getBattlefieldById(Long bid);
 
     void setCurrentMonster(Long bid, Long id);
+
+    void removeMonster(Long battlefieldId, Long id);
 }

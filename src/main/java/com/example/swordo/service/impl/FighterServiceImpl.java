@@ -1,13 +1,14 @@
 package com.example.swordo.service.impl;
 
 import com.example.swordo.current.CurrentFighter;
+import com.example.swordo.current.CurrentMonster;
 import com.example.swordo.models.entities.Fighter;
 import com.example.swordo.models.entities.FighterRoleEnum;
+import com.example.swordo.models.entities.Sword;
 import com.example.swordo.models.service.FighterServiceModel;
 import com.example.swordo.repository.FighterRepository;
 import com.example.swordo.service.FighterService;
 import com.example.swordo.service.SwordService;
-import com.example.swordo.views.FighterFightView;
 import com.example.swordo.views.FighterViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,14 @@ public class FighterServiceImpl implements FighterService {
     private final FighterRepository fighterRepository;
     private final ModelMapper modelMapper;
     private final CurrentFighter currentFighter;
+    private final CurrentMonster currentMonster;
     private final SwordService swordService;
 
-    public FighterServiceImpl(FighterRepository fighterRepository, ModelMapper modelMapper, CurrentFighter currentFighter, SwordService swordService) {
+    public FighterServiceImpl(FighterRepository fighterRepository, ModelMapper modelMapper, CurrentFighter currentFighter, CurrentMonster currentMonster, SwordService swordService) {
         this.fighterRepository = fighterRepository;
         this.modelMapper = modelMapper;
         this.currentFighter = currentFighter;
+        this.currentMonster = currentMonster;
         this.swordService = swordService;
     }
 
@@ -38,7 +41,7 @@ public class FighterServiceImpl implements FighterService {
         fighter.setHitpoints(1000);
         fighter.setCoins(0);
         fighter.setSword(swordService.getRegular());
-        fighter.setSwordDurability(fighter.getSword().getDurability());
+        fighter.setStrikesLeft(fighter.getSword().getDurability());
         fighterRepository.save(fighter);
     }
 
@@ -61,7 +64,8 @@ public class FighterServiceImpl implements FighterService {
         currentFighter.setLastName(fighterServiceModel.getLastName());
         currentFighter.setCoins(fighterServiceModel.getCoins());
         currentFighter.setPassword(fighterServiceModel.getPassword());
-        currentFighter.setSwordDurability(fighterServiceModel.getSwordDurability());
+        currentFighter.setStrikesLeft(fighterServiceModel.getStrikesLeft());
+        currentFighter.setSword(fighterServiceModel.getSword());
     }
 
     @Override
@@ -69,7 +73,8 @@ public class FighterServiceImpl implements FighterService {
         Fighter fighter = modelMapper.map(fighterServiceModel, Fighter.class);
         fighter.setRole(FighterRoleEnum.ADMIN);
         fighter.setHitpoints(Integer.MAX_VALUE);
-        fighter.setSwordDurability(0);
+        fighter.setSword(swordService.getRegular());
+        fighter.setStrikesLeft(0);
         fighter.setCoins(9999999);
         fighterRepository.save(fighter);
     }
@@ -107,5 +112,16 @@ public class FighterServiceImpl implements FighterService {
     @Override
     public Fighter findCurrent() {
         return fighterRepository.findById(currentFighter.getId()).orElse(null);
+    }
+
+    @Override
+    public void strike() {
+        Sword sword = fighterRepository.findById(currentFighter.getId()).get().getSword();
+        if(sword.getSwordClass() == currentMonster.getWeakness()){
+            sword.setDamage(2 * sword.getDamage());
+        }
+        currentMonster.setHitpoints(currentMonster.getHitpoints() - sword.getDamage());
+        currentFighter.setHitpoints(currentFighter.getHitpoints() - currentMonster.getStrength());
+        currentFighter.setStrikesLeft(currentFighter.getStrikesLeft() - 1);
     }
 }

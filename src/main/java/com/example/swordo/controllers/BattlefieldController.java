@@ -19,13 +19,11 @@ import java.util.List;
 @RequestMapping("battlefields")
 public class BattlefieldController {
     private final BattlefieldService battlefieldService;
-    private final MonsterService monsterService;
     private final CurrentFighter currentFighter;
     private final CurrentMonster currentMonster;
 
     public BattlefieldController(BattlefieldService battlefieldService, MonsterService monsterService, CurrentFighter currentFighter, CurrentMonster currentMonster) {
         this.battlefieldService = battlefieldService;
-        this.monsterService = monsterService;
         this.currentFighter = currentFighter;
         this.currentMonster = currentMonster;
     }
@@ -33,7 +31,10 @@ public class BattlefieldController {
     @GetMapping("")
     public String battlefields(Model model){
         if (currentFighter.getId() == null) {
-            return "index";
+            return "redirect:/";
+        }
+        if(currentMonster.getId() != null){
+            return "redirect:/fight";
         }
         List<BattlefieldsViewModel> battlefields = battlefieldService.getAllBattlefields();
         model.addAttribute("battlefields",battlefields);
@@ -43,7 +44,10 @@ public class BattlefieldController {
     @GetMapping("/battlefield/{bid}")
     public String battlefield(Model model,@PathVariable Long bid){
         if (currentFighter.getId() == null) {
-            return "index";
+            return "redirect:/";
+        }
+        if(currentMonster.getId() != null){
+            return "redirect:/fight";
         }
         Battlefield battlefield = battlefieldService.getBattlefieldById(bid);
         model.addAttribute("battlefield",battlefield);
@@ -53,7 +57,10 @@ public class BattlefieldController {
     @GetMapping("/battlefield/{bid}/fight/{id}")
     public String fight(Model model, @PathVariable Long id, @PathVariable Long bid) {
         if (currentFighter.getId() == null) {
-            return "index";
+            return "redirect:/";
+        }
+        if(currentMonster.getId() != null){
+            return "redirect:/fight";
         }
         battlefieldService.setCurrentMonster(bid,id);
         return "redirect:/fight";

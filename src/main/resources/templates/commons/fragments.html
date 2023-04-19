@@ -23,9 +23,16 @@
                     <a href="/admin/console">Admin Console</a>
                 </th:block>
                 <th:block th:unless="${@currentFighter.id == null}">
+                    <th:block th:if="${@currentMonster.id == null}">
                     <li>
                         <a href="/battlefields">Battlefields</a>
                     </li>
+                    </th:block>
+                    <th:block th:if="${@currentMonster.id != null}">
+                        <li>
+                            <a href="/fight">Fight</a>
+                        </li>
+                    </th:block>
                     <li>
                         <a href="/shop">Shop</a>
                     </li>

@@ -11,16 +11,20 @@
             <h3><strong>Here you fight the monster you picked</strong></h3>
         </div>
         <div>
-            <div><span>Monster</span></div>
-            <div><span th:text="${monster.monsterClass}"></span></div>
-            <div><span th:text="${monster.hitpoints}"></span></div>
-            <div><span th:text="${monster.strength}"></span></div>
-            <div><span th:text="${monster.description}"></span></div>
+            <div><span th:text="|Monster: ${monster.monsterClass}, ${monster.description}|"></span></div>
+            <div><span th:text="|Hitpoints:${monster.hitpoints}|"></span></div>
+            <div><span th:text="|Strength: ${monster.strength}|"></span></div>
         </div>
+        <br/>
+        <th:block th:if="${fighter.strikesLeft > 0}">
+            <a href="/fight/strike">Strike it</a>
+            <br/>
+        </th:block>
+        <a href="/fight/give">Give up.</a>
+        <br/>
         <div>
-            <div><span>You</span></div>
-            <div><span th:text="${fighter.hitpoints}"></span></div>
-            <div><span th:text="${fighter.sword.swordClass}"></span></div>
+            <div><span th:text="|Your Hitpoints: ${fighter.hitpoints}|"></span></div>
+            <div><span th:text="|${fighter.sword.swordClass}, Strikes Left: ${fighter.strikesLeft}|"></span></div>
         </div>
     </div>
 </main>
