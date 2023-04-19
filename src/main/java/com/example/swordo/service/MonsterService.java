@@ -12,4 +12,6 @@ public interface MonsterService {
     List<Monster> getAllExceptJimmy();
 
     Monster getMonsterById(Long id);
+
+
 }

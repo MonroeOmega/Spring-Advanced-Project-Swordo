@@ -4,6 +4,29 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main>
+    <div>
+        <h1><strong>Battlefields</strong></h1>
+        <h3><strong>Here are the available battlefields</strong></h3>
+    </div>
+    <div>
+        <div th:each="b : ${battlefields}">
+            <div>
+                <span th:text="|Size: ${b.size}|"></span>
+            </div>
+            <div>
+                <span th:text="|Description: ${b.description}|"></span>
+            </div>
+            <div>
+                <span th:text="|Number of enemies: ${b.count}|"></span>
+            </div>
+            <div>
+                <a th:href="@{/battlefields/battlefield/{id}(id = *{b.id})}">Check it out</a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>

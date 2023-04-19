@@ -15,6 +15,7 @@ public class Fighter extends BaseEntity{
     private String backstory;
     private Sword sword;
     private Integer coins;
+    private Integer swordDurability;
 
     public Fighter() {
     }
@@ -75,7 +76,7 @@ public class Fighter extends BaseEntity{
     public void setBackstory(String backstory) {
         this.backstory = backstory;
     }
-    @OneToOne
+    @ManyToOne
     public Sword getSword() {
         return sword;
     }
@@ -100,5 +101,13 @@ public class Fighter extends BaseEntity{
 
     public void setCoins(Integer coins) {
         this.coins = coins;
+    }
+
+    public Integer getSwordDurability() {
+        return swordDurability;
+    }
+
+    public void setSwordDurability(Integer swordDurability) {
+        this.swordDurability = swordDurability;
     }
 }

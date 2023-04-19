@@ -4,6 +4,20 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main>
+    <div>
+        <h1><strong>Battlefield</strong></h1>
+        <h3><strong th:text="${battlefield.getDescription()}"></strong></h3>
+    </div>
+    <div>
+        <div th:each="m : ${battlefield.getMonsters()}">
+            <div><span th:text="|Type: ${m.monsterClass}|" ></span></div>
+            <div><span th:text="|Hitpoints: ${m.hitpoints}|" ></span></div>
+            <div><a th:href="@{/battlefields/battlefield/{bid}/fight/{id}(bid = *{battlefield.id},id = *{m.id})}">Fight it!</a></div>
+            <br/>
+        </div>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>

@@ -29,6 +29,9 @@ public class HomeController {
 
     @GetMapping("/heal")
     public String heal(){
+        if (currentFighter.getId() == null) {
+            return "index";
+        }
         fighterService.healCurrentFighter();
         fighterService.updateCurrentFighter();
         return "redirect:/town";

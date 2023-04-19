@@ -15,6 +15,7 @@ public class FighterServiceModel {
     private String backstory;
     private Integer coins;
     private Sword sword;
+    private Integer swordDurability;
 
     public FighterServiceModel() {
     }
@@ -105,5 +106,13 @@ public class FighterServiceModel {
 
     public void setSword(Sword sword) {
         this.sword = sword;
+    }
+
+    public Integer getSwordDurability() {
+        return swordDurability;
+    }
+
+    public void setSwordDurability(Integer swordDurability) {
+        this.swordDurability = swordDurability;
     }
 }

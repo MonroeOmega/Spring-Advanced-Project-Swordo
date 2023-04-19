@@ -100,7 +100,7 @@ public class FighterController {
         if (currentFighter.getId() == null) {
             return "index";
         }
-        FighterProfileViewModel profileViewModel = modelMapper.map(currentFighter, FighterProfileViewModel.class);
+        FighterProfileViewModel profileViewModel = modelMapper.map(fighterService.findCurrent(), FighterProfileViewModel.class);
         model.addAttribute("profileViewModel",profileViewModel);
         if(profileViewModel.getSword() != null) {
             model.addAttribute("sword", profileViewModel.getSword().getSwordClass());

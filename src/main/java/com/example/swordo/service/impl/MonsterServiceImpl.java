@@ -1,14 +1,20 @@
 package com.example.swordo.service.impl;
 
+import com.example.swordo.current.CurrentMonster;
+import com.example.swordo.models.entities.Battlefield;
 import com.example.swordo.models.entities.Monster;
 import com.example.swordo.models.entities.MonsterClass;
 import com.example.swordo.models.entities.SwordClass;
 import com.example.swordo.repository.MonsterRepository;
+import com.example.swordo.service.BattlefieldService;
 import com.example.swordo.service.MonsterService;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+
+import static org.springframework.cglib.core.CollectionUtils.filter;
 
 @Service
 public class MonsterServiceImpl implements MonsterService {
@@ -80,4 +86,6 @@ public class MonsterServiceImpl implements MonsterService {
     public Monster getMonsterById(Long id) {
         return monsterRepository.findById(id).orElse(null);
     }
+
+
 }

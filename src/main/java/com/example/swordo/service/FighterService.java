@@ -1,5 +1,6 @@
 package com.example.swordo.service;
 
+import com.example.swordo.models.entities.Fighter;
 import com.example.swordo.models.service.FighterServiceModel;
 import com.example.swordo.views.FighterViewModel;
 
@@ -21,4 +22,6 @@ public interface FighterService {
     void updateCurrentFighter();
 
     void healCurrentFighter();
+
+    Fighter findCurrent();
 }

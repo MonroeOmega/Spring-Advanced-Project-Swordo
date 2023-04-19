@@ -19,6 +19,7 @@ public class CurrentFighter {
     private Integer coins;
     private Sword sword;
     private String password;
+    private Integer swordDurability;
 
     public CurrentFighter() {
     }
@@ -109,5 +110,13 @@ public class CurrentFighter {
 
     public void setSword(Sword sword) {
         this.sword = sword;
+    }
+
+    public Integer getSwordDurability() {
+        return swordDurability;
+    }
+
+    public void setSwordDurability(Integer swordDurability) {
+        this.swordDurability = swordDurability;
     }
 }

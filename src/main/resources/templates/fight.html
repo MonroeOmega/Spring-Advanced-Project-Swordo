@@ -4,6 +4,26 @@
 <head th:replace="commons/fragments::head"></head>
 <body>
 <header th:replace="commons/fragments::navigation"></header>
+<main>
+    <div>
+        <div>
+            <h1><strong>Fight</strong></h1>
+            <h3><strong>Here you fight the monster you picked</strong></h3>
+        </div>
+        <div>
+            <div><span>Monster</span></div>
+            <div><span th:text="${monster.monsterClass}"></span></div>
+            <div><span th:text="${monster.hitpoints}"></span></div>
+            <div><span th:text="${monster.strength}"></span></div>
+            <div><span th:text="${monster.description}"></span></div>
+        </div>
+        <div>
+            <div><span>You</span></div>
+            <div><span th:text="${fighter.hitpoints}"></span></div>
+            <div><span th:text="${fighter.sword.swordClass}"></span></div>
+        </div>
+    </div>
+</main>
 <footer th:replace="commons/fragments::footer"></footer>
 </body>
 </html>

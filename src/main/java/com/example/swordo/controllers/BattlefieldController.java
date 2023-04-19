@@ -1,6 +1,7 @@
 package com.example.swordo.controllers;
 
 import com.example.swordo.current.CurrentFighter;
+import com.example.swordo.current.CurrentMonster;
 import com.example.swordo.models.entities.Battlefield;
 import com.example.swordo.models.entities.Monster;
 import com.example.swordo.service.BattlefieldService;
@@ -20,15 +21,17 @@ public class BattlefieldController {
     private final BattlefieldService battlefieldService;
     private final MonsterService monsterService;
     private final CurrentFighter currentFighter;
+    private final CurrentMonster currentMonster;
 
-    public BattlefieldController(BattlefieldService battlefieldService, MonsterService monsterService, CurrentFighter currentFighter) {
+    public BattlefieldController(BattlefieldService battlefieldService, MonsterService monsterService, CurrentFighter currentFighter, CurrentMonster currentMonster) {
         this.battlefieldService = battlefieldService;
         this.monsterService = monsterService;
         this.currentFighter = currentFighter;
+        this.currentMonster = currentMonster;
     }
 
     @GetMapping("")
-    public String battlefield(Model model){
+    public String battlefields(Model model){
         if (currentFighter.getId() == null) {
             return "index";
         }
@@ -48,13 +51,11 @@ public class BattlefieldController {
     }
 
     @GetMapping("/battlefield/{bid}/fight/{id}")
-    public String fight(Model model, @PathVariable Long id, @PathVariable String bid) {
+    public String fight(Model model, @PathVariable Long id, @PathVariable Long bid) {
         if (currentFighter.getId() == null) {
             return "index";
         }
-        Monster monster = monsterService.getMonsterById(id);
-        model.addAttribute("monster",monster);
-        model.addAttribute("currentFighter",currentFighter);
-        return "fight";
+        battlefieldService.setCurrentMonster(bid,id);
+        return "redirect:/fight";
     }
 }

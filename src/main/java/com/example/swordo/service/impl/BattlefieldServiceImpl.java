@@ -1,5 +1,6 @@
 package com.example.swordo.service.impl;
 
+import com.example.swordo.current.CurrentMonster;
 import com.example.swordo.models.entities.Battlefield;
 import com.example.swordo.models.entities.BattlefieldSize;
 import com.example.swordo.models.entities.Monster;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,17 +22,23 @@ public class BattlefieldServiceImpl implements BattlefieldService {
     private final BattlefieldRepository battlefieldRepository;
     private final ModelMapper modelMapper;
     private final MonsterService monsterService;
+    private final CurrentMonster currentMonster;
 
-    public BattlefieldServiceImpl(BattlefieldRepository battlefieldRepository, ModelMapper modelMapper, MonsterService monsterService) {
+    public BattlefieldServiceImpl(BattlefieldRepository battlefieldRepository, ModelMapper modelMapper, MonsterService monsterService, CurrentMonster currentMonster) {
         this.battlefieldRepository = battlefieldRepository;
         this.modelMapper = modelMapper;
         this.monsterService = monsterService;
+        this.currentMonster = currentMonster;
     }
 
     @Override
     public List<BattlefieldsViewModel> getAllBattlefields() {
         return battlefieldRepository.findAll()
-                .stream().map(battlefield -> modelMapper.map(battlefield, BattlefieldsViewModel.class))
+                .stream().map(battlefield -> {
+                     BattlefieldsViewModel battlefieldsViewModel = modelMapper.map(battlefield, BattlefieldsViewModel.class);
+                     battlefieldsViewModel.setCount(battlefield.getMonsters().size());
+                     return battlefieldsViewModel;
+                    })
                 .collect(Collectors.toList());
     }
 
@@ -68,6 +76,29 @@ public class BattlefieldServiceImpl implements BattlefieldService {
     @Override
     public Battlefield getBattlefieldById(Long bid) {
         return battlefieldRepository.findById(bid).orElse(null);
+    }
+
+    @Override
+    public void setCurrentMonster(Long bid, Long id) {
+        Battlefield battlefield = battlefieldRepository.findById(bid).orElse(null);
+        if(battlefield == null){
+            return;
+        }
+        Monster monster = battlefield.getMonsters().stream()
+                .filter(monter -> monter.getId().equals(id)).findFirst()
+                .orElse(null);
+        if(monster == null){
+            return;
+        }
+        if(Objects.equals(monster.getId(), id)){
+            currentMonster.setId(id);
+            currentMonster.setBattlefieldId(bid);
+            currentMonster.setDescription(monster.getDescription());
+            currentMonster.setMonsterClass(monster.getMonsterClass());
+            currentMonster.setHitpoints(monster.getHitpoints());
+            currentMonster.setStrength(monster.getStrength());
+            currentMonster.setWeakness(monster.getWeakness());
+        }
     }
 
     private List<Monster> getBasicMonsterSets(int num){
