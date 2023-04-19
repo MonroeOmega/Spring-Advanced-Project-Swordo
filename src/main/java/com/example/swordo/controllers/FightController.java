@@ -82,4 +82,13 @@ public class FightController {
         currentFighter.setCoins(currentFighter.getCoins() + 100);
         return "redirect:/town";
     }
+
+    @GetMapping("/death")
+    public String death(){
+        if (currentFighter.getId() == null) {
+            return "redirect:/";
+        }
+        currentMonster.setId(null);
+        return "redirect:/town";
+    }
 }

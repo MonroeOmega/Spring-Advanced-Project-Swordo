@@ -108,7 +108,6 @@ public class BattlefieldServiceImpl implements BattlefieldService {
         monsters.remove(monsterService.getMonsterById(id));
         battlefield.setMonsters(monsters);
         battlefieldRepository.save(battlefield);
-
     }
 
     private List<Monster> getBasicMonsterSets(int num){
